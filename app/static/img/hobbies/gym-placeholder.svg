@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#e8e4df"/>
+  <rect x="40" y="40" width="520" height="320" rx="12" fill="#d4cfc8" stroke="#b8b0a6" stroke-width="2"/>
+  <text x="300" y="185" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#5c6478">Gym</text>
+  <text x="300" y="220" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#8a919e">Placeholder  replace me</text>
+</svg>

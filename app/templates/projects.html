@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <p class="eyebrow">Selected work</p>
+        <h1>Projects</h1>
+        <p class="lead">Things I've built — from hackathon winners to production-minded side projects.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="project-list">
+            {% for project in projects %}
+            <article class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h2>{{ project.name }}</h2>
+                        <p class="project-tagline">{{ project.tagline }}</p>
+                    </div>
+                    <span class="project-dates">{{ project.dates }}</span>
+                </div>
+                <div class="project-tags">
+                    {% for tag in project.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                <ul class="project-highlights">
+                    {% for highlight in project.highlights %}
+                    <li>{{ highlight }}</li>
+                    {% endfor %}
+                </ul>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

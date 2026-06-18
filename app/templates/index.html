@@ -1,40 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta property="og:title" content="Personal Portfolio">
-    <meta property="og:description" content="My Personal Portfolio">
-    <meta property="og:url" content="{{ url }}">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-
-    <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
-    <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
-    <title>{{ title }}</title>
-</head>
-
-<body>
-    <header class="nav-bar">
-        <div class="nav-content">
-            <a href="/">
-                <div class="nav-logo">
-                    <img src="./static/img/logo.svg" />
-                </div>
-            </a>
+{% block content %}
+<section class="hero">
+    <div class="hero-inner">
+        <div class="profile-picture">
+            <img src="{{ url_for('static', filename=profile.photo) }}" alt="Photo of {{ profile.name }}">
         </div>
-    </header>
-
-    <div class="profile">
-        <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/logo.jpg">
+        <p class="eyebrow">{{ profile.tagline }}</p>
+        <h1>{{ profile.name }}</h1>
+        <p class="hero-subtitle">{{ profile.headline }}</p>
+        <div class="hero-links">
+            <a class="btn btn-primary" href="mailto:{{ profile.email }}">Email me</a>
+            <a class="btn btn-secondary" href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-secondary" href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a>
         </div>
-        <h1>{{ title }}</h1>
     </div>
-</body>
-</html>
+</section>
+
+<section class="section" id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <p class="lead">{{ about }}</p>
+    </div>
+</section>
+
+<section class="section section-alt" id="experience">
+    <div class="container">
+        <h2>Work Experience</h2>
+        <div class="card-grid">
+            {% for job in experiences %}
+            <article class="card">
+                <div class="card-meta">
+                    <span class="card-dates">{{ job.dates }}</span>
+                    <span class="card-location">{{ job.location }}</span>
+                </div>
+                <h3>{{ job.title }}</h3>
+                <p class="card-company">{{ job.company }}</p>
+                <ul>
+                    {% for highlight in job.highlights %}
+                    <li>{{ highlight }}</li>
+                    {% endfor %}
+                </ul>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section" id="education">
+    <div class="container">
+        <h2>Education</h2>
+        <div class="card-grid">
+            {% for school in education %}
+            <article class="card">
+                <div class="card-meta">
+                    <span class="card-dates">{{ school.dates }}</span>
+                    <span class="card-location">{{ school.location }}</span>
+                </div>
+                <h3>{{ school.school }}</h3>
+                <p class="card-company">{{ school.degree }}</p>
+                <ul>
+                    {% for detail in school.details %}
+                    <li>{{ detail }}</li>
+                    {% endfor %}
+                </ul>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

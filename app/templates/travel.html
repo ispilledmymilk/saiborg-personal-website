@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <p class="eyebrow">Places I've been</p>
+        <h1>Travel Map</h1>
+        <p class="lead">A few cities and countries that have shaped my journey so far.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div id="travel-map" class="travel-map" role="region" aria-label="Map of traveled locations"></div>
+        <ul class="location-list">
+            {% for place in locations %}
+            <li>
+                <strong>{{ place.name }}</strong>
+                <span>{{ place.note }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    const locations = {{ locations | tojson }};
+    const defaultZoom = 2;
+    const map = L.map('travel-map', {
+        minZoom: defaultZoom,
+        maxZoom: 18,
+    }).setView([30, -20], defaultZoom);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: defaultZoom,
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    locations.forEach((place) => {
+        const marker = L.marker([place.lat, place.lng]).addTo(map);
+        marker.bindPopup(`<strong>${place.name}</strong><br>${place.note}`);
+    });
+</script>
+{% endblock %}
