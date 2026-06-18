@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <p class="eyebrow">Beyond the desk</p>
+        <h1>Hobbies</h1>
+        <p class="lead">What I do when I'm not shipping automation and test suites.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="hobby-grid">
+            {% for hobby in hobbies %}
+            <article class="hobby-card">
+                <div class="hobby-image">
+                    <img src="{{ url_for('static', filename=hobby.image) }}" alt="{{ hobby.name }}">
+                </div>
+                <div class="hobby-body">
+                    <h2>{{ hobby.name }}</h2>
+                    <p>{{ hobby.description }}</p>
+                    {% if hobby.link %}
+                    <a class="btn btn-primary hobby-link"
+                       href="{{ hobby.link.url }}"
+                       target="_blank"
+                       rel="noopener">
+                        {{ hobby.link.label }}
+                    </a>
+                    {% endif %}
+                    {% if hobby.extra_image %}
+                    <img class="hobby-extra-image"
+                         src="{{ url_for('static', filename=hobby.extra_image.src) }}"
+                         alt="{{ hobby.extra_image.alt }}">
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
