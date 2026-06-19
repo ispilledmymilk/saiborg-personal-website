@@ -2,31 +2,47 @@
 
 {% block content %}
 <section class="hero">
-    <div class="hero-inner">
+    <div class="hero-grid">
         <div class="profile-picture">
             <img src="{{ url_for('static', filename=profile.photo) }}" alt="Photo of {{ profile.name }}">
         </div>
-        <p class="eyebrow">{{ profile.tagline }}</p>
-        <h1>{{ profile.name }}</h1>
-        <p class="hero-subtitle">{{ profile.headline }}</p>
-        <div class="hero-links">
-            <a class="btn btn-primary" href="mailto:{{ profile.email }}">Email me</a>
-            <a class="btn btn-secondary" href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn btn-secondary" href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a>
+        <div class="hero-text">
+            <p class="hero-note">i'm so happy you're here!</p>
+            <h1>
+                Meet
+                <span class="script-name">{{ profile.name.split()[0] }}</span>
+            </h1>
+            <p class="hero-subtitle">{{ profile.headline }}</p>
+            <div class="hero-links">
+                <a class="btn btn-primary" href="mailto:{{ profile.email }}">Email me</a>
+                <a class="btn btn-secondary" href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="btn btn-secondary" href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a>
+            </div>
         </div>
+    </div>
+    <div class="wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C360,80 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#faf6ef"/>
+        </svg>
     </div>
 </section>
 
-<section class="section" id="about">
+<section class="section section-cream" id="about">
     <div class="container">
-        <h2>About Me</h2>
+        <div class="section-heading">
+            <span class="script">a little about me</span>
+            <h2>About Me</h2>
+        </div>
         <p class="lead">{{ about }}</p>
     </div>
 </section>
 
-<section class="section section-alt" id="experience">
+<section class="section section-lavender" id="experience">
     <div class="container">
-        <h2>Work Experience</h2>
+        <div class="section-heading">
+            <span class="script">where i've worked</span>
+            <h2>Work Experience</h2>
+        </div>
         <div class="card-grid">
             {% for job in experiences %}
             <article class="card">
@@ -47,9 +63,12 @@
     </div>
 </section>
 
-<section class="section" id="education">
+<section class="section section-cream" id="education">
     <div class="container">
-        <h2>Education</h2>
+        <div class="section-heading">
+            <span class="script">the academic chapter</span>
+            <h2>Education</h2>
+        </div>
         <div class="card-grid">
             {% for school in education %}
             <article class="card">

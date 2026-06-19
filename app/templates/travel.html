@@ -6,15 +6,20 @@
 {% endblock %}
 
 {% block content %}
-<section class="page-header">
+<section class="page-hero">
     <div class="container">
-        <p class="eyebrow">Places I've been</p>
+        <p class="eyebrow">places i've been</p>
         <h1>Travel Map</h1>
         <p class="lead">A few cities and countries that have shaped my journey so far.</p>
     </div>
+    <div class="wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C360,80 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#faf6ef"/>
+        </svg>
+    </div>
 </section>
 
-<section class="section">
+<section class="section section-cream">
     <div class="container">
         <div id="travel-map" class="travel-map" role="region" aria-label="Map of traveled locations"></div>
         <ul class="location-list">

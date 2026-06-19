@@ -7,7 +7,7 @@ PROFILE = {
         "I ship dependable software and strong automation — "
         "with machine learning when it actually moves the needle."
     ),
-    "photo": "img/profile.jpg",
+    "photo": "img/profile.png",
     "email": "pkasturi@uwaterloo.ca",
     "linkedin": "https://www.linkedin.com/in/sai-pranavi-kasturi-704807298/",
     "github": "https://github.com/ispilledmymilk",
@@ -181,23 +181,19 @@ HOBBIES = [
             "Always have something playing — from focus playlists while coding "
             "to unwind tracks after a long day."
         ),
-        "image": "img/hobbies/music-placeholder.svg",
+        "image": "img/hobbies/spotify-wrapped.jpg",
         "link": {
             "url": "https://open.spotify.com/user/3175ftsdm6b3f32yuevfpbprd2pq?si=c44b05b9384d4ee8",
             "label": "My Spotify",
         },
-        "extra_image": {
-            "src": "img/hobbies/spotify-wrapped-placeholder.svg",
-            "alt": "Spotify Wrapped",
-        },
     },
     {
-        "name": "Going to the Gym",
+        "name": "Gardening",
         "description": (
-            "Regular gym sessions to stay active and clear my head between "
-            "classes and project sprints."
+            "Tending to plants and spending time outdoors — a peaceful way to "
+            "unwind and watch something grow between busy school terms."
         ),
-        "image": "img/hobbies/gym-placeholder.svg",
+        "image": "img/hobbies/gardening.jpg",
     },
     {
         "name": "Eating Out",
@@ -205,15 +201,7 @@ HOBBIES = [
             "Trying new restaurants around Waterloo and Toronto — always on the "
             "hunt for a good spot to catch up over a meal."
         ),
-        "image": "img/hobbies/restaurant-placeholder.svg",
-    },
-    {
-        "name": "Going to Costco",
-        "description": (
-            "The classic Costco run — stocking up, sample hunting, and somehow "
-            "always leaving with more than planned."
-        ),
-        "image": "img/hobbies/costco-placeholder.svg",
+        "image": "img/hobbies/restaurant.jpg",
     },
     {
         "name": "Hanging Out with Friends",
@@ -221,7 +209,7 @@ HOBBIES = [
             "Game nights, campus hangouts, and spontaneous adventures with "
             "friends — the best way to recharge."
         ),
-        "image": "img/hobbies/friends-placeholder.svg",
+        "image": "img/hobbies/friends.jpg",
     },
 ]
 
@@ -230,13 +218,13 @@ TRAVEL_LOCATIONS = [
         "name": "Waterloo, Canada",
         "lat": 43.4643,
         "lng": -80.5204,
-        "note": "Home base — University of Waterloo",
+        "note": "Going to school at University of Waterloo",
     },
     {
         "name": "Toronto, Canada",
         "lat": 43.6532,
         "lng": -79.3832,
-        "note": "Internships at Zoocasa & DocTalk",
+        "note": "Interships and city exploration",
     },
     {
         "name": "Vancouver, Canada",
@@ -254,13 +242,13 @@ TRAVEL_LOCATIONS = [
         "name": "San Francisco, USA",
         "lat": 37.7749,
         "lng": -122.4194,
-        "note": "Tech scene & conferences",
+        "note": "First visit to the USA",
     },
     {
         "name": "Hyderabad, India",
         "lat": 17.3850,
         "lng": 78.4867,
-        "note": "Family visits",
+        "note": "Visiting family in India",
     },
     {
         "name": "London, UK",
@@ -272,37 +260,37 @@ TRAVEL_LOCATIONS = [
         "name": "Lagos, Nigeria",
         "lat": 6.5244,
         "lng": 3.3792,
-        "note": "Nigeria visit",
+        "note": "Grew up in Nigeria, lived there for 18 years",
     },
     {
         "name": "Barcelona, Spain",
         "lat": 41.3874,
         "lng": 2.1686,
-        "note": "City exploration",
+        "note": "Cruise to Barcelona",
     },
     {
         "name": "Rome, Italy",
         "lat": 41.9028,
         "lng": 12.4964,
-        "note": "Italian getaway",
+        "note": "Barcelona to Rome",
     },
     {
         "name": "Naples, Italy",
         "lat": 40.8518,
         "lng": 14.2681,
-        "note": "Southern Italy",
+        "note": "Rome to Naples",
     },
     {
         "name": "Nice, France",
         "lat": 43.7102,
         "lng": 7.2620,
-        "note": "French Riviera",
+        "note": "Nice to have visited France",
     },
     {
         "name": "Cannes, France",
         "lat": 43.5528,
         "lng": 7.0174,
-        "note": "French Riviera",
+        "note": "Film festival in Cannes",
     },
     {
         "name": "Dubai, UAE",
