@@ -1,79 +1,155 @@
-# Production Engineering - Week 1 - Portfolio Site
+# Sai Pranavi Kasturi · Portfolio
 
-Welcome to the MLH Fellowship! During Week 1, you'll be using Flask to build a portfolio site. This site will be the foundation for activities we do in future weeks so spend time this week making it your own and reflect your personality!
+A personal portfolio site built with Flask and Jinja2 for the MLH Production Engineering Fellowship (Week 1). It includes an about page, work experience, education, hobbies, projects, and an interactive travel map.
 
-## Tasks
+**Live site:** https://ispilledmymilk.github.io/saiborg-personal-website/
 
-Once you've got your portfolio downloaded and running using the instructions below, you should attempt to complete the following tasks.
+## Features
 
-For each of these tasks, you should create an [Issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) and work on them in a new [branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches). When the task has been completed, you should open a [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) and get another fellow in your pod to give you feedback before merging it in.
+- Profile photo and about section on the home page
+- Work experience and education rendered with Jinja templates
+- Dedicated hobbies page with images and Spotify link
+- Projects page with tech tags and highlights
+- Travel map powered by Leaflet and OpenStreetMap
+- Dynamic navigation bar driven by `PAGES` in `app/data.py`
+- Deployed to GitHub Pages via GitHub Actions
 
-*Note: Make sure to include a link to the Issue you're progressing on inside of your Pull Request so your reviewer knows what you're progressing on!*
+## Project structure
 
-### GitHub Tasks
-- [x] Create Issues for each task below
-- [x] Progress on each task in a new branch
-- [x] Open a Pull Request when a task is finished to get feedback
-
-### Portfolio Tasks
-- [x] Add a photo of yourself to the website
-- [x] Add an "About youself" section to the website.
-- [x] Add your previous work experiences
-- [x] Add your hobbies (including images)
-- [x] Add your current/previous education
-- [x] Add a map of all the cool locations/countries you visited
-
-### Flask Tasks
-- [x] Get your Flask app running locally on your machine using the instructions below.
-- [x] Add a template for adding multiple work experiences/education/hobbies using [Jinja](https://jinja.palletsprojects.com/en/3.0.x/api/#basics)
-- [x] Create a new page to display hobbies.
-- [x] Add a menu bar that dynamically displays other pages in the app
-
-
-## Getting Started
-
-You need to do all your progress here.
-
-## Installation
-
-Make sure you have python3 and pip installed
-
-Create and activate virtual environment using virtualenv
-```bash
-$ python -m venv python3-virtualenv
-$ source python3-virtualenv/bin/activate
+```
+saiborg-personal-website/
+├── app/
+│   ├── __init__.py          # Flask routes
+│   ├── data.py              # Portfolio content (edit this!)
+│   ├── templates/           # Jinja HTML templates
+│   └── static/              # CSS, images, and assets
+├── .github/workflows/       # GitHub Pages deploy workflow
+├── freeze.py                # Static site generator for GitHub Pages
+├── requirements.txt
+├── example.env
+└── README.md
 ```
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all dependencies!
+## Run locally
+
+### Prerequisites
+
+- Python 3.12+ ([download](https://www.python.org/downloads/))
+- `pip`
+
+Check your version:
+
+```bash
+python3 --version
+```
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ispilledmymilk/saiborg-personal-website.git
+cd saiborg-personal-website
+```
+
+### 2. Create and activate a virtual environment
+
+```bash
+python3 -m venv python3-virtualenv
+source python3-virtualenv/bin/activate
+```
+
+On Windows:
+
+```bash
+python3 -m venv python3-virtualenv
+python3-virtualenv\Scripts\activate
+```
+
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+### 4. Set up environment variables
 
-Create a .env file using the example.env template (make a copy using the variables inside of the template)
-
-Start flask development server
 ```bash
-$ export FLASK_ENV=development
-$ flask run
+cp example.env .env
 ```
 
-You should get a response like this in the terminal:
+The `.env` file sets `URL` for Open Graph meta tags. For local development, the default is fine:
+
 ```
-❯ flask run
- * Environment: development
- * Debug mode: on
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+URL=localhost:5001
 ```
 
-You'll now be able to access the website at `localhost:5000` or `127.0.0.1:5000` in the browser! 
+### 5. Start the Flask server
 
-*Note: The portfolio site will only work on your local machine while you have it running inside of your terminal. We'll go through how to host it in the cloud in the next few weeks!* 
+```bash
+export FLASK_APP=app
+export FLASK_ENV=development
+flask run --port 5001
+```
 
-## Contributing
+> **macOS note:** Port 5000 is often used by AirPlay Receiver. Use `--port 5001` to avoid conflicts.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+You should see:
 
-Please make sure to update tests as appropriate.
+```
+ * Running on http://127.0.0.1:5001
+```
+
+Open **http://127.0.0.1:5001** in your browser.
+
+### 6. Stop the server
+
+Press `Ctrl + C` in the terminal.
+
+## Customize your content
+
+Most site content lives in [`app/data.py`](app/data.py):
+
+| Variable | What it controls |
+|---|---|
+| `PROFILE` | Name, email, links, photo path |
+| `ABOUT` | About Me text |
+| `EXPERIENCES` | Work history |
+| `EDUCATION` | School info |
+| `HOBBIES` | Hobbies page entries |
+| `PROJECTS` | Projects page entries |
+| `TRAVEL_LOCATIONS` | Map markers |
+| `PAGES` | Navigation menu items |
+
+After editing, refresh the browser. Restart Flask if changes don't appear.
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Home — photo, about, experience, education |
+| `/hobbies/` | Hobbies with images |
+| `/projects/` | Project portfolio |
+| `/travel/` | Interactive travel map |
+
+## Deployment
+
+The site deploys automatically to GitHub Pages when changes are pushed to `main`. The workflow builds a static version of the site using [Frozen-Flask](https://pythonhosted.org/Frozen-Flask/) and publishes it via GitHub Actions.
+
+To deploy manually, push to `main`:
+
+```bash
+git push origin main
+```
+
+Check deploy status under the **Actions** tab on GitHub.
+
+## Tech stack
+
+- [Flask](https://flask.palletsprojects.com/) — web framework
+- [Jinja2](https://jinja.palletsprojects.com/) — templating
+- [Leaflet](https://leafletjs.com/) — travel map
+- [GitHub Pages](https://pages.github.com/) — hosting
+- [Frozen-Flask](https://pythonhosted.org/Frozen-Flask/) — static export for deployment
+
+## License
+
+MIT
