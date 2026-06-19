@@ -40,7 +40,7 @@ def index():
     )
 
 
-@app.route("/hobbies")
+@app.route("/hobbies/")
 def hobbies():
     return render_template(
         "hobbies.html",
@@ -50,7 +50,7 @@ def hobbies():
     )
 
 
-@app.route("/projects")
+@app.route("/projects/")
 def projects():
     return render_template(
         "projects.html",
@@ -60,7 +60,7 @@ def projects():
     )
 
 
-@app.route("/travel")
+@app.route("/travel/")
 def travel():
     return render_template(
         "travel.html",
