@@ -300,6 +300,14 @@ TRAVEL_LOCATIONS = [
     },
 ]
 
+BANNER_MESSAGES = [
+    "automation · quality · full-stack",
+    "GenAI Genesis 2026 · TD Best AI hack winner",
+    "ship it · test it · automate it",
+    "thanks for stopping by",
+    "let's build something that actually ships",
+]
+
 # Navigation entries power the dynamic menu bar in base.html.
 PAGES = [
     {"endpoint": "index", "label": "Home"},

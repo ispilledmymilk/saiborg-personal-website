@@ -46,24 +46,14 @@
         {% block content %}{% endblock %}
     </main>
 
-    <div class="marquee" aria-hidden="true">
+    <div class="marquee" aria-label="Site highlights">
         <div class="marquee-track">
-            <span>open to recruitment</span>
-            <span>·</span>
-            <span>build reliable systems</span>
-            <span>·</span>
-            <span>automate the boring parts</span>
-            <span>·</span>
-            <span>ship with confidence</span>
-            <span>·</span>
-            <span>open to recruitment</span>
-            <span>·</span>
-            <span>build reliable systems</span>
-            <span>·</span>
-            <span>automate the boring parts</span>
-            <span>·</span>
-            <span>ship with confidence</span>
-            <span>·</span>
+            {% for _ in range(2) %}
+                {% for message in banner_messages %}
+                <span class="marquee-text">{{ message }}</span>
+                <span class="marquee-dot" aria-hidden="true">✦</span>
+                {% endfor %}
+            {% endfor %}
         </div>
     </div>
 

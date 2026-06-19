@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 from app.data import (
     ABOUT,
+    BANNER_MESSAGES,
     EDUCATION,
     EXPERIENCES,
     HOBBIES,
@@ -23,6 +24,7 @@ def _context(**extra):
     return {
         "profile": PROFILE,
         "pages": PAGES,
+        "banner_messages": BANNER_MESSAGES,
         "url": os.getenv("URL", "localhost:5000"),
         **extra,
     }
