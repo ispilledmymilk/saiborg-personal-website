@@ -311,6 +311,7 @@ BANNER_MESSAGES = [
 # Navigation entries power the dynamic menu bar in base.html.
 PAGES = [
     {"endpoint": "index", "label": "Home"},
+    {"endpoint": "timeline", "label": "Timeline"},
     {"endpoint": "hobbies", "label": "Hobbies"},
     {"endpoint": "projects", "label": "Projects"},
     {"endpoint": "travel", "label": "Travel Map"},

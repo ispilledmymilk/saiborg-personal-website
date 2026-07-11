@@ -24,3 +24,5 @@ tmux send-keys -t "$SESSION_NAME" "source python3-virtualenv/bin/activate" Enter
 tmux send-keys -t "$SESSION_NAME" "export FLASK_APP=app" Enter
 tmux send-keys -t "$SESSION_NAME" "export FLASK_ENV=development" Enter
 tmux send-keys -t "$SESSION_NAME" "flask run --host 0.0.0.0 --port 5000" Enter
+
+echo "==> Redeploy complete. Flask running in tmux session '${SESSION_NAME}' on port 5000."

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">school &amp; career journey</p>
+        <h1>Timeline</h1>
+        <p class="lead">Share an update — then see it land in the feed below.</p>
+    </div>
+    <div class="wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C360,80 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#faf6ef"/>
+        </svg>
+    </div>
+</section>
+
+<section class="section section-cream">
+    <div class="container timeline-layout">
+        <form id="timeline-form" class="timeline-form" novalidate>
+            <h2>New post</h2>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name"
+                   value="{{ profile.name }}">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com"
+                   value="{{ profile.email }}">
+
+            <label for="content">What's new?</label>
+            <textarea id="content" name="content" rows="4" required
+                      placeholder="Just shipped something cool…"></textarea>
+
+            <button type="submit" class="btn btn-primary" id="submit-btn">Post update</button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="timeline-feed">
+            <h2>Latest updates</h2>
+            <div id="timeline-posts" class="timeline-posts">
+                <p class="timeline-empty">Loading posts…</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js"></script>
+<script>
+(function () {
+    const form = document.getElementById("timeline-form");
+    const feed = document.getElementById("timeline-posts");
+    const statusEl = document.getElementById("form-status");
+    const submitBtn = document.getElementById("submit-btn");
+
+    function gravatarUrl(email, size) {
+        const hash = md5((email || "").trim().toLowerCase());
+        return "https://www.gravatar.com/avatar/" + hash + "?s=" + (size || 80) + "&d=identicon";
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function formatDate(value) {
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return value;
+        return date.toLocaleString();
+    }
+
+    function renderPosts(posts) {
+        if (!posts.length) {
+            feed.innerHTML = '<p class="timeline-empty">No posts yet — be the first!</p>';
+            return;
+        }
+
+        feed.innerHTML = posts.map(function (post) {
+            return (
+                '<article class="timeline-card">' +
+                    '<img class="timeline-avatar" src="' + gravatarUrl(post.email, 96) + '" alt="">' +
+                    '<div class="timeline-card-body">' +
+                        '<div class="timeline-card-meta">' +
+                            '<strong>' + escapeHtml(post.name) + '</strong>' +
+                            '<span>' + escapeHtml(formatDate(post.created_at)) + '</span>' +
+                        '</div>' +
+                        '<p>' + escapeHtml(post.content) + '</p>' +
+                    '</div>' +
+                '</article>'
+            );
+        }).join("");
+    }
+
+    async function loadPosts() {
+        try {
+            const res = await fetch("/api/timeline_post");
+            const data = await res.json();
+            renderPosts(data.timeline_posts || []);
+        } catch (err) {
+            feed.innerHTML = '<p class="timeline-empty">Could not load posts.</p>';
+        }
+    }
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        statusEl.textContent = "";
+        submitBtn.disabled = true;
+
+        const body = new URLSearchParams(new FormData(form));
+
+        try {
+            const res = await fetch("/api/timeline_post", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: body.toString(),
+            });
+
+            if (!res.ok) {
+                throw new Error("Request failed");
+            }
+
+            form.content.value = "";
+            statusEl.textContent = "Posted!";
+            await loadPosts();
+        } catch (err) {
+            statusEl.textContent = "Something went wrong — try again.";
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
+
+    loadPosts();
+})();
+</script>
+{% endblock %}
