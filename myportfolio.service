@@ -1,0 +1,15 @@
+[Unit]
+Description=My portfolio site
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/root/saiborg-personal-website
+Environment="PATH=/root/saiborg-personal-website/python3-virtualenv/bin"
+EnvironmentFile=/root/saiborg-personal-website/.env
+ExecStart=/root/saiborg-personal-website/python3-virtualenv/bin/flask run --host 0.0.0.0 --port 5000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

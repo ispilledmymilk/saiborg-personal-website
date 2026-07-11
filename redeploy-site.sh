@@ -1,28 +1,19 @@
 #!/bin/bash
 set -e
 
-PROJECT_DIR="$HOME/saiborg-personal-website"
-SESSION_NAME="flask"
+# 1. cd into project folder
+cd "$HOME/saiborg-personal-website"
 
-# Kill all existing tmux sessions (stops any running Flask server)
-tmux kill-server 2>/dev/null || true
-
-cd "$PROJECT_DIR"
-
-# Sync with latest changes from GitHub main branch
+# 2. Sync VPS repo with latest main from GitHub
 git fetch
-git reset --hard origin/main
+git reset origin/main --hard
 
-# Enter virtual environment and install dependencies
+# 3. Enter virtual environment and install dependencies
 source python3-virtualenv/bin/activate
 pip install -r requirements.txt
 
-# Start Flask in a new detached tmux session
-tmux new-session -d -s "$SESSION_NAME"
-tmux send-keys -t "$SESSION_NAME" "cd $PROJECT_DIR" Enter
-tmux send-keys -t "$SESSION_NAME" "source python3-virtualenv/bin/activate" Enter
-tmux send-keys -t "$SESSION_NAME" "export FLASK_APP=app" Enter
-tmux send-keys -t "$SESSION_NAME" "export FLASK_ENV=development" Enter
-tmux send-keys -t "$SESSION_NAME" "flask run --host 0.0.0.0 --port 5000" Enter
+# 4. Restart myportfolio systemd service
+systemctl restart myportfolio
+systemctl --no-pager --full status myportfolio | head -15
 
-echo "==> Redeploy complete. Flask running in tmux session '${SESSION_NAME}' on port 5000."
+echo "==> Redeploy complete"
