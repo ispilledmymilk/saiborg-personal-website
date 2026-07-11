@@ -577,6 +577,113 @@ img {
     transform: rotate(2deg);
 }
 
+/* Timeline */
+.timeline-layout {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: minmax(280px, 360px) 1fr;
+    align-items: start;
+}
+
+.timeline-form,
+.timeline-feed {
+    background: var(--white);
+    border: 2px solid var(--black);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    box-shadow: var(--shadow);
+}
+
+.timeline-form h2,
+.timeline-feed h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.timeline-form label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0.75rem 0 0.35rem;
+}
+
+.timeline-form input,
+.timeline-form textarea {
+    width: 100%;
+    border: 2px solid var(--black);
+    border-radius: 10px;
+    padding: 0.7rem 0.85rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: var(--cream);
+}
+
+.timeline-form textarea {
+    resize: vertical;
+}
+
+.timeline-form .btn {
+    margin-top: 1.25rem;
+}
+
+.form-status {
+    min-height: 1.25rem;
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    color: var(--forest);
+    font-weight: 600;
+}
+
+.timeline-posts {
+    display: grid;
+    gap: 1rem;
+}
+
+.timeline-empty {
+    color: var(--muted);
+    margin: 0;
+}
+
+.timeline-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid var(--black);
+    border-radius: 12px;
+    background: var(--cream);
+}
+
+.timeline-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--black);
+    object-fit: cover;
+}
+
+.timeline-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem;
+    margin-bottom: 0.4rem;
+    align-items: baseline;
+}
+
+.timeline-card-meta span {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.timeline-card-body p {
+    margin: 0;
+    color: var(--text);
+}
+
 /* Travel map */
 .travel-map {
     height: 480px;
@@ -679,6 +786,10 @@ img {
     }
 
     .hobby-card {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-layout {
         grid-template-columns: 1fr;
     }
 
