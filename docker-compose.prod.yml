@@ -18,7 +18,8 @@ services:
       - mydatabase:/var/lib/mysql
 
   nginx:
-    image: jonasal/nginx-certbot:latest
+    container_name: nginx
+    image: jonasal/nginx-certbot
     restart: always
     environment:
       - CERTBOT_EMAIL=${CERTBOT_EMAIL}
