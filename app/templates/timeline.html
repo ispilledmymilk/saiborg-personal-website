@@ -116,6 +116,11 @@
                 body: body.toString(),
             });
 
+            if (res.status === 429) {
+                statusEl.textContent = "Rate limit reached — please wait 1 minute before posting again.";
+                return;
+            }
+
             if (!res.ok) {
                 throw new Error("Request failed");
             }
